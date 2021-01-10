@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atguigu.springcloud.entities.CommonResult;
@@ -20,7 +21,7 @@ public class PaymentController {
 	private PaymentService paymentService;
 
 	@PostMapping(value = "/payment/create")
-	public CommonResult<Integer> create(Payment payment) {
+	public CommonResult<Integer> create(@RequestBody Payment payment) {
 		// 测试：http://localhost:8001/payment/create?serial=atguigu002
 		int result = paymentService.create(payment);
 		log.info("*****插入结果：" + result);
