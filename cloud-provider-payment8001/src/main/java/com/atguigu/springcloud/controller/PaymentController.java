@@ -1,6 +1,7 @@
 package com.atguigu.springcloud.controller;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
 
@@ -66,5 +67,16 @@ public class PaymentController {
 					+ instance.getUri());
 		}
 		return this.disoveryClient;
+	}
+	
+	@GetMapping(value = "/payment/feign/timeout")
+	public String paymentFeignTimeout() {
+		try {
+			TimeUnit.SECONDS.sleep(3);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return serverPort;
 	}
 }
